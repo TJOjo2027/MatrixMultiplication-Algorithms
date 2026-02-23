@@ -1,3 +1,0 @@
-C:/Users/tojo/Desktop/Baylor '25 - '26/Spring/Introduction to Algorithms/Programs/Program 2/cmake-build-debug/CMakeFiles/Program_2.dir
-C:/Users/tojo/Desktop/Baylor '25 - '26/Spring/Introduction to Algorithms/Programs/Program 2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/tojo/Desktop/Baylor '25 - '26/Spring/Introduction to Algorithms/Programs/Program 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
