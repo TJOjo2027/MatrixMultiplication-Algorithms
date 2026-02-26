@@ -11,28 +11,28 @@
 #include <iostream>
 #include "SquareMatrix.h"
 
-void getQuadrantBounds(size_t dim, string quadrant,
+void getQuadrantBounds(size_t dim, size_t quadrant,
     size_t& row_start, size_t& col_start) {
 
-    if (quadrant == "11") {
+    if (quadrant == 11) {
         // row: row: 0 -> (dim/2) - 1
         row_start = 0;
         // column: 0 -> (dim/2) - 1
         col_start = 0;
     }
-    else if (quadrant == "12") {
+    else if (quadrant == 12) {
         // row: 0 -> (dim/2) - 1
         row_start = 0;
         // column: (dim/2) -> dim -1
         col_start = dim/2;
     }
-    else if (quadrant == "21") {
+    else if (quadrant == 21) {
         // row: (dim/2) -> dim
         row_start = dim/2;
         // column: 0 -> (dim/2) - 1
         col_start = 0;
     }
-    else if (quadrant == "22") {
+    else if (quadrant == 22) {
         // row: (dim/2) -> dim
         row_start = dim/2;
         // column: (dim/2) -> dim - 1
@@ -45,8 +45,8 @@ void getQuadrantBounds(size_t dim, string quadrant,
 }
 
 void SubMatrixMultiplication(const SquareMatrix& A, const SquareMatrix& B,
-    SquareMatrix& C, string matrixA_quadrant, string matrixB_quadrant,
-    string matrixC_quadrant) {
+    SquareMatrix& C, size_t matrixA_quadrant, size_t matrixB_quadrant,
+    size_t matrixC_quadrant) {
 
     size_t matrix_dim = C.dim;
 
@@ -111,7 +111,7 @@ void* threadWork(void* p) {
 }
 
 SquareMatrix* addMatrix(const SquareMatrix& A, const SquareMatrix& B) {
-    // iterates throught the matrices and adds
+    // iterates throughout the matrices and adds
     SquareMatrix* result = new SquareMatrix(A.dim);
     for (size_t r = 0; r < result -> dim; r++) {
         for (size_t c = 0; c < result -> dim; c++) {
@@ -133,7 +133,7 @@ SquareMatrix* subtractMatrix(const SquareMatrix& A, const SquareMatrix& B) {
 }
 
 void populateToSubMatrix(const SquareMatrix& whole_matrix,
-        SquareMatrix& sub_matrix, string quadrant) {
+        SquareMatrix& sub_matrix, size_t quadrant) {
     size_t row_start, col_start;
     getQuadrantBounds(whole_matrix.dim, quadrant, row_start, col_start);
 
@@ -147,7 +147,7 @@ void populateToSubMatrix(const SquareMatrix& whole_matrix,
 }
 
 void writeFromSubMatrix(SquareMatrix& whole_matrix,
-        const SquareMatrix& sub_matrix, string quadrant) {
+        const SquareMatrix& sub_matrix, size_t quadrant) {
     size_t row_start, col_start;
     getQuadrantBounds(whole_matrix.dim, quadrant, row_start, col_start);
 
@@ -160,8 +160,8 @@ void writeFromSubMatrix(SquareMatrix& whole_matrix,
     }
 }
 
-void recursionBounds(PARAM& param, string a_quadrant, string b_quadrant,
-        string c_quadrant, size_t A_row_init, size_t A_col_init,
+void recursionBounds(PARAM& param, size_t a_quadrant, size_t b_quadrant,
+        size_t c_quadrant, size_t A_row_init, size_t A_col_init,
         size_t B_row_init, size_t B_col_init,
         size_t C_row_init, size_t C_col_init, size_t init_dim) {
 
@@ -203,10 +203,10 @@ void divideAndConquerHelper(PARAM& params) {
      * |_____|_____|
      */
 
-    const string A11 = "11";
-    const string A12 = "12";
-    const string A21 = "21";
-    const string A22 = "22";
+    const size_t A11 = 11;
+    const size_t A12 = 12;
+    const size_t A21 = 21;
+    const size_t A22 = 22;
 
     size_t A_row_init = params.A_row_offset;
     size_t A_col_init = params.A_col_offset;
@@ -369,10 +369,10 @@ SquareMatrix* ThreadedDivideAndConquer(const SquareMatrix& A, const SquareMatrix
     SquareMatrix* C = new SquareMatrix(A.dim);
 
     // constants to be used
-    const string A11 = "11";
-    const string A12 = "12";
-    const string A21 = "21";
-    const string A22 = "22";
+    const size_t A11 = 11;
+    const size_t A12 = 12;
+    const size_t A21 = 21;
+    const size_t A22 = 22;
 
     // create the threads
     pthread_t t1, t2, t3, t4;
@@ -449,10 +449,10 @@ SquareMatrix* Strassen(const SquareMatrix& A, const SquareMatrix& B) {
     SquareMatrix* P7;
 
     // QUADRANT STRING CONSTANTS
-    const string Q11 = "11";
-    const string Q12 = "12";
-    const string Q21 = "21";
-    const string Q22 = "22";
+    const size_t Q11 = 11;
+    const size_t Q12 = 12;
+    const size_t Q21 = 21;
+    const size_t Q22 = 22;
 
     // A Submatrices
     SquareMatrix* A11 = new SquareMatrix(A.dim / 2);

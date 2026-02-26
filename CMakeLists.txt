@@ -4,4 +4,5 @@ project(Program_2)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Program_2 SquareMatrix.cpp
-        SquareMatrix.h)
+        SquareMatrix.h
+        SquareMatrix_Test.cpp)

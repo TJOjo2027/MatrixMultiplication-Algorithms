@@ -81,11 +81,11 @@ struct ThreadArguments {
     const SquareMatrix* A;
     const SquareMatrix* B;
     SquareMatrix* C;
-    string A_subMatrix_1;
-    string  B_subMatrix_1;
-    string A_subMatrix_2;
-    string B_subMatrix_2;
-    string C_subMatrix;
+    size_t A_subMatrix_1;
+    size_t  B_subMatrix_1;
+    size_t A_subMatrix_2;
+    size_t B_subMatrix_2;
+    size_t C_subMatrix;
 
     /*
     * description: creates a struct instance of ThreadArguments
@@ -95,8 +95,8 @@ struct ThreadArguments {
     *
     */
     ThreadArguments(const SquareMatrix* A, const SquareMatrix* B,
-        SquareMatrix* C, string a_sub_1, string b_sub_1,
-        string a_sub_2, string b_sub_2, string c_sub) {
+        SquareMatrix* C, size_t a_sub_1, size_t b_sub_1,
+        size_t a_sub_2, size_t b_sub_2, size_t c_sub) {
         this -> A = A;
         this -> B = B;
         this -> C = C;
@@ -185,7 +185,7 @@ SquareMatrix* Strassen(const SquareMatrix& A, const SquareMatrix& B);
 * postcondition: gives row and column start variable their values
 *
 */
-void getQuadrantBounds(size_t dim, string quadrant,
+void getQuadrantBounds(size_t dim, size_t quadrant,
     size_t& row_start, size_t& col_start);
 
 /*
@@ -197,8 +197,8 @@ void getQuadrantBounds(size_t dim, string quadrant,
 *
 */
 void SubMatrixMultiplication(const SquareMatrix& A, const SquareMatrix& B,
-    SquareMatrix& C, string matrixA_quadrant, string matrixB_quadrant,
-    string matrixC_quadrant);
+    SquareMatrix& C, size_t matrixA_quadrant, size_t matrixB_quadrant,
+    size_t matrixC_quadrant);
 
 /*
 * description: void* function for the work done by the thread
@@ -238,7 +238,7 @@ SquareMatrix* subtractMatrix(const SquareMatrix& A, const SquareMatrix& B);
 *
 */
 void populateToSubMatrix(const SquareMatrix& whole_matrix,
-    SquareMatrix& sub_matrix, string quadrant);
+    SquareMatrix& sub_matrix, size_t quadrant);
 
 /*
 * description: writes data from a smaller matrix to another 4x its size.
@@ -260,8 +260,8 @@ void writeFromSubMatrix(SquareMatrix& whole_matrix,
 * calls.
 *
 */
-void recursionBounds(PARAM& param, string a_quadrant, string b_quadrant,
-    string c_quadrant, size_t A_row_init, size_t A_col_init,
+void recursionBounds(PARAM& param, size_t a_quadrant, size_t b_quadrant,
+    size_t c_quadrant, size_t A_row_init, size_t A_col_init,
     size_t B_row_init, size_t B_col_init,
     size_t C_row_init, size_t C_col_init, size_t init_dim);
 
